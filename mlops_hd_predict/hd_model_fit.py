@@ -35,36 +35,42 @@ X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random
 
 # Define Optuna objective function
 def objective(trial):
-    n_estimators = trial.suggest_int('n_estimators', 100, 1000)
+    #making objective function nested to avoid error
+    #
+    mlflow.start_run(nested=True)
+    n_estimators = trial.suggest_int('n_estimators', 50, 500)
     max_depth = trial.suggest_int('max_depth', 2, 32)
-    min_samples_split = trial.suggest_int('min_samples_split', 2, 10)
+    #min_samples_split = trial.suggest_int('min_samples_split', 2, 10)
     
     classifier = RandomForestClassifier(
         n_estimators=n_estimators,
         criterion='entropy',
         max_depth=max_depth,
-        min_samples_split=min_samples_split,
-        random_state=40
-    )
+        )
     
     classifier.fit(X_train, y_train)
     y_pred = classifier.predict(X_test)
     accuracy = accuracy_score(y_test, y_pred)
     
     # Log metrics and model to MLflow
+    mlflow.log_param('n_estimators', n_estimators)
+    mlflow.log_param('max_depth', max_depth)
     mlflow.log_params(trial.params)
     mlflow.log_metric('accuracy', accuracy)
     mlflow.sklearn.log_model(classifier, "model")
-    
+    mlflow.end_run()  # End the nested run
     return accuracy
 
 # Optuna optimization within an MLflow run
-mlflow.start_run(run_name='hd_model_exp_01')
-print('+++MlFlow Started ++++++++')
-study = optuna.create_study(direction='maximize')
-study.optimize(objective, n_trials=50)
-print('+++MlFlow Completed ++++++++')
-mlflow.end_run()
+mlflow.set_tracking_uri("http://localhost:5000")
+mlflow.set_experiment("hd_model_experiment")
+
+with mlflow.start_run(run_name='hd_model_exp_02'):
+    print('+++MlFlow Started ++++++++')
+    study = optuna.create_study(direction='maximize')
+    study.optimize(objective, n_trials=50)
+    print('+++MlFlow Completed ++++++++')
+    mlflow.end_run()
 print('Results ++++++++++++++++++++++++++++++')
 # Best trial results
 print("Best trial:", study.best_trial.params)
