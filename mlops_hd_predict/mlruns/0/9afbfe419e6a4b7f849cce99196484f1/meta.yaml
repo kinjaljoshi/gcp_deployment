@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/9afbfe419e6a4b7f849cce99196484f1/artifacts
+end_time: 1722792348807
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 9afbfe419e6a4b7f849cce99196484f1
+run_name: redolent-wren-873
+run_uuid: 9afbfe419e6a4b7f849cce99196484f1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1722792141275
+status: 3
+tags: []
+user_id: kinja

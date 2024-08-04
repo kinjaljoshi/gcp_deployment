@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/4cb08753a64e4721885f001139b127ad/artifacts
+end_time: 1722793018074
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4cb08753a64e4721885f001139b127ad
+run_name: hd_model_exp_01
+run_uuid: 4cb08753a64e4721885f001139b127ad
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1722792877401
+status: 3
+tags: []
+user_id: kinja
