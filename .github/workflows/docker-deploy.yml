@@ -26,5 +26,4 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: user/myapp:latest
         tags: hd_prediction_app:latest
