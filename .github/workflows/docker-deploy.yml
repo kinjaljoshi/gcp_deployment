@@ -1,12 +1,6 @@
-name: CI to Docker Hub
-
-on:
-  push:
-    branches: [ master ]
-
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -26,4 +20,5 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
+        tags: user/myapp:latest
         tags: hd_prediction_app:latest
