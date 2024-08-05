@@ -26,4 +26,4 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: hd_prediction_app:latest
+        tags: kinjaljoshi/hd_prediction_app:latest
