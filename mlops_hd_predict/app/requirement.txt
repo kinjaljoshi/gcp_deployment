@@ -1,0 +1,6 @@
+Flask
+pickle
+numpy
+pandas
+scikit-learn
+warnings

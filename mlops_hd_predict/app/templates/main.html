@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MLOPS: Predict heart disease </title>
+  <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
+  <!--link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"-->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='hd.css') }}">
+</head>
+
+<body>
+
+  <div class="container">
+    <h2 class='container-heading'><span class="heading_font">MLOPS: Heart disease prediction</span></h2>
+    <div class='description'>
+      <p>Random forest based model with ML serve using Flask </p><br>
+    </div>
+  </div>
+
+  <!-- Text Area -->
+  <div class="ml-container">
+    <form action="{{ url_for('predict')}}" method="POST">
+    <div class="form-row">
+        <div>
+            <label for="age">Age in years</label>
+            <input type="text" id="age" name="age" placeholder="Your age in Years">
+        </div>
+        <div>
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender">
+                <option selected>----select option----</option>
+                <option value="1">Male</option>
+                <option value="0">Female</option>
+            </select>
+        </div>
+		<div>
+            <label for="height">Height in cm</label>
+            <input type="text" id="height" name="height" placeholder="A number in range [100-200] cm">
+        </div>
+        <div>
+            <label for="weight">Weight</label>
+            <input type="text" id="weight" name="weight" placeholder="A number in range [40-180] kgs">
+        </div>
+    </div>
+    <!-- Repeat for each pair of label and input/select -->
+    <div class="form-row">
+	    <div>
+			<label for="bphigh">Systolic Blood Pressure</label>
+			<input type="text" id="bphigh" name="bphigh" placeholder="A number in range [100-220]"><br>
+			</select><br><br>  
+		</div>
+		<div>	
+			<label for="bplow">Diastolic Blood Pressure</label>
+			<input type="text" id="bplow" name="bplow" placeholder="A number in range [40-180]"><br>
+			</select><br><br>         
+		</div>
+		<div>
+			<label for="cholesterol">Cholesterol 1: normal, 2: above normal, 3: well above normal </label>
+			<select id="cholesterol" name="cholesterol">
+			  <option selected>----select option----</option>
+			  <option value="1">Normal</option>
+			  <option value="2">Above normal</option>
+			  <option value="3">Well above normal</option>     
+			</select><br><br>        
+		</div>	
+		<div>
+			<label for="glucose">Glucose 1: normal, 2: above normal, 3: well above normal </label>
+			<select id="glucose" name="glucose">
+			  <option selected>----select option----</option>
+			  <option value="1">Normal</option>
+			  <option value="2">Above normal</option>
+			  <option value="3">Well above normal</option>     
+			</select><br><br>
+        </div>
+    </div>
+    
+	<div class="form-row">
+		<div>
+			<label for="smoking">Smoking</label>
+			<select id="smoking" name="smoking">
+			  <option selected>----select option----</option>
+			  <option value="1">Yes</option>
+			  <option value="0">No</option>
+			</select><br><br>  
+		</div>	
+		<div>
+			<label for="alcohol">Alcohol</label>
+			<select id="alcohol" name="alcohol">
+			  <option selected>----select option----</option>
+			  <option value="1">Yes</option>
+			  <option value="0">No</option>
+			</select><br><br>    
+        </div>
+		<div>
+			<label for="exercise">Exercise</label>
+			<select id="exercise" name="exercise">
+			  <option selected>----select option----</option>
+			  <option value="1">Yes</option>
+			  <option value="0">No</option>
+			</select><br><br><br>  
+		</div>	
+	</div>	
+    <!-- Continue wrapping other input fields similarly -->
+    <div class="form-row">
+        <input type="submit" class="my-cta-button" value="Predict" style="font-size: 20px; padding: 10px 20px;">
+    </div>
+</form>
+  </div>
+
+</body>
+
+</html>

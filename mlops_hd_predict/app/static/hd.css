@@ -1,0 +1,20 @@
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;  /* Adjust space between columns */
+    margin-bottom: 20px; /* Space between rows */
+}
+
+.form-row div {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"], select {
+    width: 50%; /* Full width of the column */
+    padding: 8px; /* Padding for input for better readability */
+}
+
+input[type="submit"] {
+    grid-column: span 1; /* Button spans across both columns */
+}
