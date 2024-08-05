@@ -38,7 +38,7 @@ def predict():
     data = np.array([[age,gender,height,weight,bphigh,bplow,cholestrol,glucose,smoking,alcohol,exercise]])
 	
     # Load the object from the .pkl file
-    with open('./random_forest_model.pkl', 'rb') as file:
+    with open('random_forest_model.pkl', 'rb') as file:
         model = pickle.load(file)
 
     hd_predict = model.predict(data)
@@ -46,4 +46,4 @@ def predict():
     return render_template('result.html', prediction=hd_predict)     
 
 if __name__ == '__main__':
-	app.run(debug=False, host="0.0.0.0",port="5001")
+	app.run(debug=False, host="0.0.0.0",port=8000)

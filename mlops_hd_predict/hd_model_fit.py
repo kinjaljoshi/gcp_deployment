@@ -36,7 +36,7 @@ X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random
 # Define Optuna objective function
 def objective(trial):
     #making objective function nested to avoid error
-    #
+    #for overwriting logs with same flowid
     mlflow.start_run(nested=True)
     n_estimators = trial.suggest_int('n_estimators', 50, 500)
     max_depth = trial.suggest_int('max_depth', 2, 32)
@@ -68,7 +68,7 @@ mlflow.set_experiment("hd_model_experiment")
 with mlflow.start_run(run_name='hd_model_exp_02'):
     print('+++MlFlow Started ++++++++')
     study = optuna.create_study(direction='maximize')
-    study.optimize(objective, n_trials=50)
+    study.optimize(objective, n_trials=20)
     print('+++MlFlow Completed ++++++++')
     mlflow.end_run()
 print('Results ++++++++++++++++++++++++++++++')
@@ -79,7 +79,7 @@ print("Best accuracy:", study.best_trial.value)
 # Save the best model
 best_classifier = RandomForestClassifier(**study.best_trial.params)
 best_classifier.fit(X_train, y_train)
-with open('random_forest_model.pkl', 'wb') as file:
+with open('./app/random_forest_model.pkl', 'wb') as file:
     pickle.dump(best_classifier, file)
 
 # Final model evaluation
