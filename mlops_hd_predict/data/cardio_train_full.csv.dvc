@@ -1,5 +1,5 @@
 outs:
-- md5: cef33a1b111960cf42e15e4fcf32a147
-  size: 157
+- md5: 71c46a70f7ba9e3e4736ae73ecd5bac9
+  size: 2941524
   hash: md5
   path: cardio_train_full.csv
