@@ -20,9 +20,6 @@ df.info()
 print(df.head(5))
 print(df.isna().sum())
 
-#drop id column
-df = df.drop('id', axis=1)
-
 # Visualization
 plt.figure(figsize=(15,10))
 sns.heatmap(df.corr(), linewidth=.02, annot=True, cmap="coolwarm")
