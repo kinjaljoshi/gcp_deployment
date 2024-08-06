@@ -7,6 +7,7 @@ import warnings
 import mlflow
 import mlflow.sklearn
 import optuna
+from optuna.visualization import plot_optimization_history
 
 from sklearn.model_selection import KFold, StratifiedKFold, cross_val_score, train_test_split
 from sklearn.ensemble import RandomForestClassifier
@@ -19,10 +20,12 @@ df.info()
 print(df.head(5))
 print(df.isna().sum())
 
+#drop id column
+df = df.drop('id', axis=1)
+
 # Visualization
 plt.figure(figsize=(15,10))
 sns.heatmap(df.corr(), linewidth=.02, annot=True, cmap="coolwarm")
-plt.show()
 plt.savefig('HD correlation.png')
 
 df.hist(figsize=(12,12))
@@ -40,7 +43,6 @@ def objective(trial):
     mlflow.start_run(nested=True)
     n_estimators = trial.suggest_int('n_estimators', 50, 500)
     max_depth = trial.suggest_int('max_depth', 2, 32)
-    #min_samples_split = trial.suggest_int('min_samples_split', 2, 10)
     
     classifier = RandomForestClassifier(
         n_estimators=n_estimators,
