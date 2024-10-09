@@ -18,6 +18,8 @@ app = Flask(__name__)
 def home():
     return render_template('main.html')
 
+
+#sample build
 @app.route('/predict', methods=['GET','POST'])
 def predict():
     if request.method == 'POST':
